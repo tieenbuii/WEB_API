@@ -49,7 +49,7 @@
 <!-- End of Topbar -->
 
 <script>
-  const socket = io("https://web-client-7ucs.onrender.com");
+  const socket = io("https://web-api-tubd.onrender.com/");
   socket.on("orders", (data) => {
     showAlert("success", `Đơn hàng mới từ - ${data.user}. Làm ơn kiểm tra!!!`);
   });
