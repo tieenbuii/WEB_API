@@ -12,11 +12,11 @@
 
   <!-- Topbar Navbar -->
   <div class="navbar-nav ml-auto align-items-center">
-    <div class="nav-item dropdown no-arrow mx-1">
+    <!-- <div class="nav-item dropdown no-arrow mx-1">
       <a href="/locations" class="nav-link">
         <i class="fas fa-map-marker-alt"></i>
       </a>
-    </div>
+    </div> -->
     <div class="topbar-divider d-none d-sm-block"></div>
 
     <!-- Nav Item - User Information -->
@@ -28,7 +28,9 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+        <span class="mr-2 d-none d-lg-inline text-gray-700 small"
+          >Quản trị viên</span
+        >
         <img class="img-profile rounded-circle" src="<%= user.avatar%>" />
       </button>
       <!-- Dropdown - User Information -->
@@ -47,8 +49,8 @@
 <!-- End of Topbar -->
 
 <script>
-  const socket = io("https://localhost.com");
+  const socket = io("https://web-client-7ucs.onrender.com");
   socket.on("orders", (data) => {
-    showAlert("success", `New order from - ${data.user}. Please check!!!`);
+    showAlert("success", `Đơn hàng mới từ - ${data.user}. Làm ơn kiểm tra!!!`);
   });
 </script>

@@ -53,7 +53,8 @@ const loadData = async () => {
         {
           data: "price",
           render: function (data) {
-            return '<div class= "my-3">' + data + " VND</div>";
+            const formattedPrice = Number(data).toLocaleString("vi-VN");
+            return '<div class="my-3">' + formattedPrice + " VND</div>";
           },
         },
         {
@@ -128,7 +129,7 @@ $(document).ready(async function () {
 });
 $("#add_data").click(function () {
   files = [];
-  $("#dynamic_modal_title").text("Add Product");
+  $("#dynamic_modal_title").text("Thêm sản phẩm");
   $("#sample_form")[0].reset();
   $("#category").val(null).trigger("change");
   $("#brand").val(null).trigger("change");
@@ -137,7 +138,7 @@ $("#add_data").click(function () {
   $("#action").val("Add");
   $("#id").val("");
 
-  $("#action_button").text("Add");
+  $("#action_button").text("Thêm");
   $(".img-show").empty();
   $(".mb-2").show();
 
@@ -148,11 +149,11 @@ $(document).on("click", ".edit", function () {
   $("#sample_form")[0].reset();
   const id = $(this).data("id");
 
-  $("#dynamic_modal_title").text("Edit Product");
+  $("#dynamic_modal_title").text("Sửa sản phẩm");
 
-  $("#action").val("Edit");
+  $("#action").val("Sửa");
 
-  $("#action_button").text("Edit");
+  $("#action_button").text("Sửa");
 
   $("#action_modal").modal("show");
   $(".mb-2").hide();
@@ -168,18 +169,13 @@ $(document).on("click", ".edit", function () {
       $("#title").val(product.title);
       $("#category").val(product.category.id).trigger("change");
       $("#brand").val(product.brand.id).trigger("change");
-      $("#baseNotes").val(product.baseNotes).trigger("change");
-      $("#gender").val(product.gender).trigger("change");
       $("#price").val(product.price);
       $("#promotion").val(product.promotion);
-      $("#concentration").val(product.concentration);
       $("#origin").val(product.origin);
       $("#yearOfLaunch").val(product.yearOfLaunch);
       $("#perfumeGroup").val(product.perfumeGroup);
-      $("#recommendedAge").val(product.recommendedAge);
-      $("#topNotes").val(product.topNotes);
-      $("#baseNotes").val(product.baseNotes);
-
+      $("#inventory").val(product.inventory);
+      $("#capacity").val(product.capacity);
       tinymce.get("description").setContent(product.description);
     },
   });
@@ -187,13 +183,13 @@ $(document).on("click", ".edit", function () {
 $(document).on("click", ".delete", function () {
   const id = $(this).data("id");
 
-  if (confirm("Are you sure you want to delete this data?")) {
+  if (confirm("Bạn có chắc xóa sản phẩm này?")) {
     try {
       $.ajax({
         url: `/api/v1/products/${id}`,
         method: "delete",
         success: function (data) {
-          showAlert("success", `Delete Product ${id} Successfully`);
+          showAlert("success", `Xóa thành công sản phẩm`);
           reloadData();
         },
       });

@@ -11,7 +11,7 @@ const loadData = async () => {
         {
           data: "user",
           render: function (data) {
-            const n = data?data.name:null;
+            const n = data ? data.name : null;
             return '<div class= "my-3">' + n + "</div>";
           },
         },
@@ -43,28 +43,28 @@ const loadData = async () => {
             const value = data.length > 9 ? data.slice(0, 8) : data;
             let html = "";
             if (data == "Processed")
-              html = `<div class= "my-3"><button class="btn btn-warning" disabled>${value}</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-warning" disabled>Chờ xác nhận</button></div>`;
             if (data == "Cancelled")
-              html = `<div class= "my-3"><button class="btn btn-danger" disabled>${value}</button></div>`;
-            if (data == "Waiting Goods")
-              html = `<div class= "my-3"><button class="btn btn-info" disabled>${value}</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-danger" disabled>Đã hủy</button></div>`;
+            if (data == "WaitingGoods")
+              html = `<div class= "my-3"><button class="btn btn-info" disabled>Đợi lấy hàng</button></div>`;
             if (data == "Delivery")
-              html = `<div class= "my-3"><button class="btn btn-primary" disabled>${value}</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-primary" disabled>Đang vận chuyển</button></div>`;
             if (data == "Success")
-              html = `<div class= "my-3"><button class="btn btn-success" disabled>${value}</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-success" disabled>Đã giao hàng</button></div>`;
             return html;
           },
         },
         {
           data: "totalPrice",
           render: function (data) {
-            return `<div class= "my-3">${data} VND</div>`;
+            return `<div class= "my-3">${data.toLocaleString('vi-VN')} VND</div>`;
           },
         },
         {
           data: null,
           render: function (row) {
-            let btnView = `<a href="/orders/${row.id}"><button type="button" class="btn btn-primary btn-sm mr-1" >View</button></a>`;
+            let btnView = `<a href="/orders/${row.id}"><button type="button" class="btn btn-primary btn-sm mr-1" >Xem chi tiết</button></a>`;
 
             return `<div class= "my-3">${btnView}</div>`;
           },
@@ -80,6 +80,9 @@ const loadData = async () => {
 
 function reloadData() {
   $("#sample_data").DataTable().ajax.reload();
+}
+function formatVND(amount) {
+  return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 }
 $(document).ready(function () {
   loadData();

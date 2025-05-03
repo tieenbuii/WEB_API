@@ -43,22 +43,22 @@ function reloadData() {
 }
 
 $("#add_data").click(function () {
-  $("#dynamic_modal_title").text("Add Brand");
+  $("#dynamic_modal_title").text("Thêm thương hiệu");
   $("#sample_form")[0].reset();
-  $("#action").val("Add");
+  $("#action").val("Thêm");
   $("#id").val("");
 
-  $("#action_button").text("Add");
+  $("#action_button").text("Thêm");
   $("#action_modal").modal("show");
 });
 $(document).on("click", ".edit", function () {
   const id = $(this).data("id");
 
-  $("#dynamic_modal_title").text("Edit Brand");
+  $("#dynamic_modal_title").text("Sửa thương hiệu");
 
-  $("#action").val("Edit");
+  $("#action").val("Sửa");
 
-  $("#action_button").text("Edit");
+  $("#action_button").text("Sửa");
 
   $("#action_modal").modal("show");
   $.ajax({
@@ -82,7 +82,7 @@ $(document).on("click", ".delete", function () {
         url: `/api/v1/brands/${id}`,
         method: "delete",
         success: function (data) {
-          showAlert("success", `Delete brand Successfully`);
+          showAlert("success", `Xóa thành công thương hiệu`);
           reloadData();
         },
       });
@@ -110,7 +110,7 @@ $("#sample_form").on("submit", async (e) => {
       success: (data) => {
         $("#action_button").attr("disabled", false);
         $("#action_modal").modal("hide");
-        showAlert("success", `${action} Brand successfully!`);
+        showAlert("success", `${action} thương hiệu thành công!`);
         reloadData();
       },
     });

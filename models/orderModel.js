@@ -46,7 +46,7 @@ const orderSchema = new mongoose.Schema(
         values: [
           "Cancelled",
           "Processed",
-          "Waiting Goods",
+          "WaitingGoods",
           "Delivery",
           "Success",
         ],

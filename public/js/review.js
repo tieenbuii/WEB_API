@@ -17,7 +17,7 @@ const loadData = async () => {
         {
           data: "product",
           render: function (data) {
-            return '<div class= "my-3">' + data + "</div>";
+            return '<div class= "my-3">' + data.title + "</div>";
           },
         },
         {
@@ -90,13 +90,13 @@ $(document).on("click", ".edit", function () {
 $(document).on("click", ".delete", function () {
   const id = $(this).data("id");
 
-  if (confirm("Are you sure you want to delete this Review?")) {
+  if (confirm("Bạn có chắc muốn xóa đánh giá này?")) {
     try {
       $.ajax({
         url: `/api/v1/reviews/${id}`,
         method: "delete",
         success: function (data) {
-          showAlert("success", `Delete review Successfully`);
+          showAlert("success", `Xóa thành công đánh giá`);
           reloadData();
         },
       });

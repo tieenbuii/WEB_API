@@ -5,7 +5,7 @@ const changeStatus = async (id, data) => {
       method: "PATCH",
       data,
       success: function (data) {
-        showAlert("success", "Update Order Status successfully!");
+        showAlert("success", "Cập nhật thành công!");
         window.setTimeout(() => {
           window.location.reload();
         }, 500);
@@ -23,7 +23,7 @@ function cancelOrder(value) {
   }
 }
 function acceptOrder(value) {
-  if (confirm("Chấp nhận đặt hàng?")) {
+  if (confirm("Bạn có chắc đơn hàng ở trạng thái này?")) {
     const id = $(value).data("id");
     data = { status: $(value).val() };
     changeStatus(id, data);
@@ -34,7 +34,7 @@ $(document).ready(function () {
   $(".navbar-nav li")[2].className = "nav-item active";
   if ($("#status").val() == "Cancelled") $("#progress-bar").width("0%");
   if ($("#status").val() == "Processed") $("#progress-bar").width("5%");
-  if ($("#status").val() == "Waiting Goods") $("#progress-bar").width("35%");
+  if ($("#status").val() == "WaitingGoods") $("#progress-bar").width("35%");
   if ($("#status").val() == "Delivery") $("#progress-bar").width("63%");
   if ($("#status").val() == "Success") $("#progress-bar").width("100%");
 });

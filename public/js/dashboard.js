@@ -3,7 +3,7 @@
   '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 let totalRevenue = 0;
-let totalInvoice = 0;
+// let totalInvoice = 0;
 const currentYear = new Date().getFullYear();
 const arr_status = [
   {
@@ -15,7 +15,7 @@ const arr_status = [
     quantity: 0,
   },
   {
-    status: "Waiting Goods",
+    status: "WaitingGoods",
     quantity: 0,
   },
   {
@@ -243,11 +243,16 @@ async function loadPieChart() {
       type: "doughnut",
       data: {
         labels: [
-          arr_status[0].status,
-          arr_status[1].status,
-          arr_status[2].status,
-          arr_status[3].status,
-          arr_status[4].status,
+          // arr_status[0].status,
+          "Đã hủy",
+          "Chờ xác nhận",
+          "Đợi lấy hàng",
+          "Đang vận chuyển",
+          "Đã giao hàng"
+          // arr_status[1].status,
+          // arr_status[2].status,
+          // arr_status[3].status,
+          // arr_status[4].status,
         ],
         datasets: [
           {
@@ -315,7 +320,7 @@ async function loadAreaChart() {
       });
     });
     await respond.forEach(async (value) => {
-      totalInvoice += value.total_month;
+      // totalInvoice += value.total_month;
       await arr_invoice.forEach((month) => {
         if (
           month.id.year === value._id.year &&
@@ -326,9 +331,11 @@ async function loadAreaChart() {
     });
 
     document.getElementById("totalRevenue").innerHTML =
-      (Number((totalRevenue / 1000000).toFixed())).toLocaleString().replace(/,/g, '.') + " Triệu VND";
-    document.getElementById("totalInvoice").innerHTML =
-      (Number((totalInvoice / 1000000).toFixed())).toLocaleString().replace(/,/g, '.')  + " Triệu VND";
+      Number((totalRevenue / 1000000).toFixed())
+        .toLocaleString()
+        .replace(/,/g, ".") + " Triệu VND";
+    // document.getElementById("totalInvoice").innerHTML =
+    //   (Number((totalInvoice / 1000000).toFixed())).toLocaleString().replace(/,/g, '.')  + " Triệu VND";
     const revenue = await arr_revenue.map((value) => value.total);
     const invoice = await arr_invoice.map((value) => value.total);
     const ctc = document.getElementById("myAreaChart");
@@ -336,23 +343,23 @@ async function loadAreaChart() {
       type: "line",
       data: {
         labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
+          "Tháng 1",
+          "Tháng 2",
+          "Tháng 3",
+          "Tháng 4",
+          "Tháng 5",
+          "Tháng 6",
+          "Tháng 7",
+          "Tháng 8",
+          "Tháng 9",
+          "Tháng 10",
+          "Tháng 11",
+          "Tháng 12",
         ],
         datasets: [
           {
             label: "Thu nhập",
-            lineTension: 0.3,
+            lineTension: 0.2,
             backgroundColor: "rgba(78, 115, 223, 0.05)",
             borderColor: "rgba(78, 115, 223, 1)",
             pointRadius: 3,
@@ -365,21 +372,21 @@ async function loadAreaChart() {
             pointBorderWidth: 2,
             data: revenue,
           },
-          {
-            label: "Chi phí",
-            lineTension: 0.3,
-            backgroundColor: "rgba(78, 115, 223, 0.05)",
-            borderColor: "rgba(78, 115, 223, 1)",
-            pointRadius: 3,
-            pointBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointBorderColor: "rgba(78, 115, 223, 1)",
-            pointHoverRadius: 3,
-            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-            pointHitRadius: 10,
-            pointBorderWidth: 2,
-            data: invoice,
-          },
+          // {
+          //   label: "Chi phí",
+          //   lineTension: 0.3,
+          //   backgroundColor: "rgba(78, 115, 223, 0.05)",
+          //   borderColor: "rgba(78, 115, 223, 1)",
+          //   pointRadius: 3,
+          //   pointBackgroundColor: "rgba(78, 115, 223, 1)",
+          //   pointBorderColor: "rgba(78, 115, 223, 1)",
+          //   pointHoverRadius: 3,
+          //   pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+          //   pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+          //   pointHitRadius: 10,
+          //   pointBorderWidth: 2,
+          //   data: invoice,
+          // },
         ],
       },
       options: {
@@ -403,7 +410,7 @@ async function loadAreaChart() {
                 drawBorder: false,
               },
               ticks: {
-                maxTicksLimit: 7,
+                maxTicksLimit: 12,
               },
             },
           ],
@@ -448,7 +455,7 @@ async function loadAreaChart() {
             label: function (tooltipItem, chart) {
               var datasetLabel =
                 chart.datasets[tooltipItem.datasetIndex].label || "";
-              return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
+              return datasetLabel + ": " + number_format(tooltipItem.yLabel)+" VND";
             },
           },
         },

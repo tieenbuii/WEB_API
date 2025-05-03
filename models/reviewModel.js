@@ -39,17 +39,17 @@ reviewSchema.index({ product: 1, user: 1 }, { unique: true });
 reviewSchema.index({ "$**": "text" });
 
 reviewSchema.pre(/^find/, async function (next) {
-  // this.populate({
-  //   path: 'product',
-  //   select: 'name'
-  // }).populate({
-  //   path: 'user',
-  //   select: 'name avatar'
-  // });
   this.populate({
+    path: "product",
+    select: "title",
+  }).populate({
     path: "user",
     select: "name avatar",
   });
+  // this.populate({
+  //   path: "user",
+  //   select: "name avatar",
+  // });
   next();
 });
 

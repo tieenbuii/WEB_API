@@ -11,12 +11,12 @@ $("#login").click(async function (e) {
       data,
       success: (data) => {
         if (data.data.user.role == "admin") {
-          showAlert("success", "Login successfully!");
+          showAlert("success", "Đăng nhập thành công!");
           window.setTimeout(() => {
             location.assign("/");
           }, 1500);
         } else {
-          showAlert("error", "Tài khoản của bạn không có quyền truy cập!");
+          showAlert("error", "Đăng nhập thất bại");
         }
       },
     });

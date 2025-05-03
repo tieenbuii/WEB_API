@@ -19,7 +19,7 @@ const arr_status = [
     quantity: 0,
   },
   {
-    status: "Waiting Goods",
+    status: "WaitingGoods",
     quantity: 0,
   },
   {
@@ -51,11 +51,16 @@ function showChart() {
       type: "doughnut",
       data: {
         labels: [
-          arr_status[0].status,
-          arr_status[1].status,
-          arr_status[2].status,
-          arr_status[3].status,
-          arr_status[4].status,
+          "Đã hủy",
+          "Chờ xác nhận",
+          "Đợi lấy hàng",
+          "Đang vận chuyển",
+          "Đã giao hàng"
+          // arr_status[0].status,
+          // arr_status[1].status,
+          // arr_status[2].status,
+          // arr_status[3].status,
+          // arr_status[4].status,
         ],
         datasets: [
           {
@@ -144,6 +149,10 @@ $(document).ready(async function () {
     url: "api/v1/users",
     method: "GET",
   });
+  const countProduct = await $.ajax({
+    url: "api/v1/products",
+    method: "GET",
+  });
   const totalRevenue = await $.ajax({
     url: "api/v1/orders/sumOption",
     method: "POST",
@@ -171,7 +180,9 @@ $(document).ready(async function () {
     ${index + 1}
 </div>
 <div class="col-md-2">
-    <img src="${value.image[0]}" onerror="this.src='https://res.cloudinary.com/dbekkzxtt/image/upload/v1668578244/dwxqdvfwehpklx9fzx6l.webp'"
+    <img src="${
+      value.image[0]
+    }" onerror="this.src='https://res.cloudinary.com/dbekkzxtt/image/upload/v1668578244/dwxqdvfwehpklx9fzx6l.webp'"
         class="img-fluid" alt="Phone">
 </div>
 <div class="col-md-7 d-flex text-center align-items-center">
@@ -222,6 +233,7 @@ ${value.inventory} sản phẩm
     Number((a / 1000000).toFixed())
       .toLocaleString()
       .replace(/,/g, ".") + " Triệu VND";
+  $("#totalProduct").html(countProduct.results);
   document.getElementById("totalInvoice").innerHTML =
     Number((b / 1000000).toFixed())
       .toLocaleString()
@@ -234,7 +246,7 @@ async function changeData(e) {
     $("#birthday").val(null);
   } else {
     $("#dateRange").val(null);
-    if(e !== "inDay") {
+    if (e !== "inDay") {
       $("#birthday").val(null);
     }
   }
@@ -243,6 +255,10 @@ async function changeData(e) {
   let data;
   if (e.id == "allYear") {
     loadPieChart();
+    const countProduct = await $.ajax({
+      url: "api/v1/products",
+      method: "GET",
+    });
     const countUser = await $.ajax({
       url: "api/v1/users",
       method: "GET",
@@ -305,6 +321,7 @@ async function changeData(e) {
     }
     const a = totalRevenue[0] ? totalRevenue[0].total_revenue : 0;
     const b = totalImport[0] ? totalImport[0].total : 0;
+    $("#totalProduct").html(countProduct.results);
     document.getElementById("totalRevenue").innerHTML =
       Number((a / 1000000).toFixed())
         .toLocaleString()

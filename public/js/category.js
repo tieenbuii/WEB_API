@@ -43,22 +43,22 @@ function reloadData() {
 }
 
 $("#add_data").click(function () {
-  $("#dynamic_modal_title").text("Add Category");
+  $("#dynamic_modal_title").text("Thêm danh mục");
   $("#sample_form")[0].reset();
   $("#action").val("Add");
   $("#id").val("");
 
-  $("#action_button").text("Add");
+  $("#action_button").text("Thêm");
   $("#action_modal").modal("show");
 });
 $(document).on("click", ".edit", function () {
   const id = $(this).data("id");
 
-  $("#dynamic_modal_title").text("Edit Category");
+  $("#dynamic_modal_title").text("Sửa danh mục");
 
-  $("#action").val("Edit");
+  $("#action").val("Sửa");
 
-  $("#action_button").text("Edit");
+  $("#action_button").text("Sửa");
 
   $("#action_modal").modal("show");
   $.ajax({
@@ -75,13 +75,13 @@ $(document).on("click", ".edit", function () {
 $(document).on("click", ".delete", function () {
   const id = $(this).data("id");
 
-  if (confirm("Are you sure you want to delete this Category?")) {
+  if (confirm("Bạn có chắc xóa danh mục này?")) {
     try {
       $.ajax({
         url: `/api/v1/categories/${id}`,
         method: "delete",
         success: function (data) {
-          showAlert("success", `Delete category Successfully`);
+          showAlert("success", `Xóa thành công danh mục`);
           reloadData();
         },
       });
@@ -109,7 +109,7 @@ $("#sample_form").on("submit", async (e) => {
       success: (data) => {
         $("#action_button").attr("disabled", false);
         $("#action_modal").modal("hide");
-        showAlert("success", `${action} Category successfully!`);
+        showAlert("success", `${action} danh mục thành công!`);
         reloadData();
       },
     });

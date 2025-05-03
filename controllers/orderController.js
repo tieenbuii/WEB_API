@@ -41,7 +41,7 @@ exports.updateOrder = catchAsync(async (req, res, next) => {
     return next(new AppError("Không tìm thấy dữ liệu với ID này", 404));
   }
   try {
-    const domain = `https://hctech.onrender.com`;
+    const domain = `https://web-client-7ucs.onrender.com`;
     const message = mailTemplate(doc, domain);
     await sendEmail({
       email: doc.user.email,

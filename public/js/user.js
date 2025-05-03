@@ -93,9 +93,9 @@ $(document).on("click", ".edit", function () {
 
   $("#dynamic_modal_title").text("Phân quyền");
 
-  $("#action").val("Edit");
+  $("#action").val("Sửa");
 
-  $("#action_button").text("Edit");
+  $("#action_button").text("Sửa");
 
   $("#action_modal").modal("show");
   $(".mb-2").hide();
@@ -106,7 +106,7 @@ $(document).on("click", ".edit", function () {
     method: "GET",
     success: function (data) {
       const user = data.data.data;
-      $("#name").val(user.role);
+      $("#role").val(user.role);
       $("#id").val(user._id);
     },
   });
@@ -119,15 +119,15 @@ $(document).on("click", ".ban", function () {
       ? { active: "ban" }
       : { active: "active" };
   const action =
-    this.children[0].className == "fa fa-user-lock" ? "Ban" : "UnBan";
-  if (confirm("Are you sure you want to ban this user?")) {
+    this.children[0].className == "fa fa-user-lock" ? "Khóa" : "Mở khóa";
+  if (confirm("Bạn có chắc muốn khóa tài khoản này?")) {
     try {
       $.ajax({
         url: `/api/v1/users/${id}`,
         method: "patch",
         data,
         success: function (data) {
-          showAlert("success", `${action} ${data.data.data.name} Successfully`);
+          showAlert("success", `${action} ${data.data.data.name} thành công`);
           reloadData();
         },
       });
@@ -149,7 +149,7 @@ $("#sample_form").on("submit", async (e) => {
           password: $("#password").val(),
           passwordConfirm: $("#passwordConfirm").val(),
         }
-      : { name: $("#name").val() };
+      : { role: $("#role").val() };
   const id = $("#id").val();
   const url = id != "" ? `/api/v1/users/${id}` : `/api/v1/users/signup`;
   try {
@@ -163,7 +163,7 @@ $("#sample_form").on("submit", async (e) => {
       success: (data) => {
         $("#action_button").attr("disabled", false);
         $("#action_modal").modal("hide");
-        showAlert("success", `${action} User successfully!`);
+        showAlert("success", `${action} thành công tài khoản!`);
         if (action == "Add") window.location.reload();
         else reloadData();
       },
