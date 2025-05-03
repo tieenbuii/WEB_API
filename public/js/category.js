@@ -45,7 +45,7 @@ function reloadData() {
 $("#add_data").click(function () {
   $("#dynamic_modal_title").text("Thêm danh mục");
   $("#sample_form")[0].reset();
-  $("#action").val("Add");
+  $("#action").val("Thêm");
   $("#id").val("");
 
   $("#action_button").text("Thêm");
