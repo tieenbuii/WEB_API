@@ -55,6 +55,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    origin: String,
     season: String,
     yearOfLaunch: Number,
     perfumeGroup: String,

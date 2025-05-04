@@ -248,7 +248,7 @@ async function loadPieChart() {
           "Chờ xác nhận",
           "Đợi lấy hàng",
           "Đang vận chuyển",
-          "Đã giao hàng"
+          "Đã giao hàng",
           // arr_status[1].status,
           // arr_status[2].status,
           // arr_status[3].status,
@@ -455,7 +455,9 @@ async function loadAreaChart() {
             label: function (tooltipItem, chart) {
               var datasetLabel =
                 chart.datasets[tooltipItem.datasetIndex].label || "";
-              return datasetLabel + ": " + number_format(tooltipItem.yLabel)+" VND";
+              return (
+                datasetLabel + ": " + number_format(tooltipItem.yLabel) + " VND"
+              );
             },
           },
         },

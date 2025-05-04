@@ -55,7 +55,7 @@ function showChart() {
           "Chờ xác nhận",
           "Đợi lấy hàng",
           "Đang vận chuyển",
-          "Đã giao hàng"
+          "Đã giao hàng",
           // arr_status[0].status,
           // arr_status[1].status,
           // arr_status[2].status,

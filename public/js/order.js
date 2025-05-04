@@ -58,7 +58,9 @@ const loadData = async () => {
         {
           data: "totalPrice",
           render: function (data) {
-            return `<div class= "my-3">${data.toLocaleString('vi-VN')} VND</div>`;
+            return `<div class= "my-3">${data.toLocaleString(
+              "vi-VN"
+            )} VND</div>`;
           },
         },
         {
@@ -82,7 +84,7 @@ function reloadData() {
   $("#sample_data").DataTable().ajax.reload();
 }
 function formatVND(amount) {
-  return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+  return amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 }
 $(document).ready(function () {
   loadData();
