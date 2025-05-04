@@ -1,14 +1,14 @@
 {
-  "name": "tech-ecommerce",
+  "name": "pine-perfume",
   "version": "1.0.0",
-  "description": "TLCN-Mern",
+  "description": "Nước hoa chính hãng",
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js"
   },
-  "author": "nvh2312",
+  "author": "tienbui",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
