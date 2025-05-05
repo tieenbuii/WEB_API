@@ -43,15 +43,15 @@ const loadData = async () => {
             const value = data.length > 9 ? data.slice(0, 8) : data;
             let html = "";
             if (data == "Processed")
-              html = `<div class= "my-3"><button class="btn btn-warning" disabled>Chờ xác nhận</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-warning" disabled>Xác nhận</button></div>`;
             if (data == "Cancelled")
               html = `<div class= "my-3"><button class="btn btn-danger" disabled>Đã hủy</button></div>`;
             if (data == "WaitingGoods")
-              html = `<div class= "my-3"><button class="btn btn-info" disabled>Đợi lấy hàng</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-info" disabled>Lấy hàng</button></div>`;
             if (data == "Delivery")
-              html = `<div class= "my-3"><button class="btn btn-primary" disabled>Đang vận chuyển</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-primary" disabled>Vận chuyển</button></div>`;
             if (data == "Success")
-              html = `<div class= "my-3"><button class="btn btn-success" disabled>Đã giao hàng</button></div>`;
+              html = `<div class= "my-3"><button class="btn btn-success" disabled>Đã giao</button></div>`;
             return html;
           },
         },

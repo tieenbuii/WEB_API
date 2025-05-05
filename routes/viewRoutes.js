@@ -48,7 +48,7 @@ router.get("/products", (req, res, next) => {
   res.status(200).render("product", { title: "Quản lý sản phẩm" });
 });
 router.get("/orders", (req, res, next) => {
-  res.status(200).render("order", { title: "Đơn hàng của bạn" });
+  res.status(200).render("order", { title: "Quản lý đơn hàng" });
 });
 router.get("/orders/:id", async (req, res, next) => {
   try {

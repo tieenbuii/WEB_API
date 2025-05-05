@@ -42,7 +42,7 @@ const loadData = async () => {
           data: null,
           render: function (row) {
             let btnEdit =
-              '<button type="button" class="btn btn-primary btn-sm mr-1 edit" data-id="' +
+              '<button type="button" class="btn btn-primary btn-sm mr-1" data-id="' +
               row._id +
               '"><i class="fa fa-edit"></i></button>';
             let btnDelete =
