@@ -106,7 +106,11 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <p class="text-muted mb-0">Thời gian đặt hàng: <%=data.date%>
+                                <!-- <p class="text-muted mb-0">Thời gian đặt hàng: <%=data.date%>
+                                </p> -->
+                                <p class="text-muted mb-0">
+                                    Thời gian đặt hàng: 
+                                    <%= new Date(new Date(data.date).getTime() + 7 * 60 * 60 * 1000).toLocaleString('vi-VN') %>
                                 </p>
                                 <p class="text-muted mb-0"><span class="fw-bold me-4">Giá</span>
                                     <%=data.total.toLocaleString('vi-VN') %> VND
